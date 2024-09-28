@@ -35,7 +35,10 @@
 #include "ext/fmemopen.h"
 #include "context_data.lib.h"
 //include "context_data.crf.h"
+namespace cs {
 #include "cs219.lib.h"
+}
+using namespace cs;
 
 #ifdef OPENMP
 #include <omp.h>

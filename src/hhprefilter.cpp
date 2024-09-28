@@ -7,7 +7,10 @@
 
 #include "hhprefilter.h"
 #include "ext/fmemopen.h"
+namespace hh {
 #include "cs219.lib.h"
+}
+using namespace hh;
 
 #define SWAP(tmp, arg1, arg2) tmp = arg1; arg1 = arg2; arg2 = tmp;
 
