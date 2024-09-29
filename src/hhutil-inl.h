@@ -566,7 +566,7 @@ inline simd_float log2f4(simd_float x)
 //    simd_float term3 = simdf32_fpow2(simdf32_sub(x4, x_max));
 //    simd_float term4 = simdf32_fpow2(simdf32_sub(x5, x_max));
 //    simd_float term5 = simdf32_fpow2(simdf32_sub(x6, x_max));
-//    
+//
 //    term0 = simdf32_add(term0, term1);          //      2^(x1 - x_max)
 //    term2 = simdf32_add(term2, term3);          // +    2^(x2 - x_max)
 //    term4 = simdf32_add(term4, term5);          // +    2^(x3 - x_max)
@@ -626,7 +626,7 @@ inline simd_float simd_flog2_sum_fpow2(simd_float x1, simd_float x2, simd_float 
 // Calculate log2( 2^x1 + 2^x2) in stable fashion using
 //  max(-FLT_MAX, max(x1,x2) + flog2(1.0 + fpow2(min(x1,x2) - max(x1,x2)));
 inline simd_float simd_flog2_sum_fpow2(simd_float x1, simd_float x2) {
-    
+
     const simd_float CONST_1f = simdf32_set(1.0f);
     const simd_float CONST_max_comp_vec = simdf32_set(-FLT_MAX);
     simd_float xmax = simdf32_max(x1, x2);
@@ -651,7 +651,7 @@ inline simd_float simd_flog2_sum_fpow2(simd_float x1, simd_float x2) {
 //      -->             result = xMax + log2(2^(x1 - xMax) + 2^(x2 - xMax) + 2^(x3 - xMax) + 2^(x4 - xMax) + 2^(x5 - xMax) + 2^(x6 - xMax))
 // WHERE x1, x2, x3, x4, x5 and x6 contain the log-values respectively!
 inline float flog2_sum_fpow2(float x1, float x2, float x3, float x4, float x5, float x6) {
-    
+
     float xmax = fmax(x1, fmax(x2, fmax(x3, fmax(x4, fmax(x5, x6)))));
 
     return fmax(-FLT_MAX, xmax + flog2(
@@ -668,7 +668,7 @@ inline float flog2_sum_fpow2(float x1, float x2, float x3, float x4, float x5, f
     //                                              powf(2, x4 - xmax) +
     //                                              powf(2, x5 - xmax) +
     //                                              powf(2, x6 - xmax)));
-    
+
 }
 
 //
@@ -720,14 +720,14 @@ inline float flog2_sum_fpow2(float x1, float x2, float x3, float x4, float x5, f
 //      -->             result = xMax + log2(2^(x1 - xMax) + 2^(x2 - xMax) + 2^(x3 - xMax))
 // WHERE x1, x2 and x3 contain the log-values respectively!
 inline float flog2_sum_fpow2(float x1, float x2, float x3) {
-    
+
     //      float arr[] = {x1, x2, x3};
     //      std::sort(arr, arr + 3);
     //
     //      return fmax(-FLT_MAX, arr[2] + logo(arr[1] - arr[2] + logo(arr[0] - arr[1])));
-    
+
     float xmax = fmax(x1, fmax(x2, x3));
-    
+
     return fmax(-FLT_MAX, xmax + flog2(
                                        fpow2(x1 - xmax) +
                                        fpow2(x2 - xmax) +
@@ -736,7 +736,7 @@ inline float flog2_sum_fpow2(float x1, float x2, float x3) {
     //                                              powf(2, x1 - xmax) +
     //                                              powf(2, x2 - xmax) +
     //                                              powf(2, x3 - xmax)));
-    
+
 }
 
 // Perform log-sum-exp calculation with two variables
@@ -749,21 +749,21 @@ inline float flog2_sum_fpow2(float x1, float x2, float x3) {
 //      -->             result = xMax + log2(2^(x1 - xMax) + 2^(x2 - xMax))
 // WHERE x1 and x2 contain the log-values respectively!
 inline float flog2_sum_fpow2(float x1, float x2) {
-    
+
     //      float arr[] = {x1, x2};
     //      std::sort(arr, arr + 2);
     //
     //      return fmax(-FLT_MAX, arr[1] + logo(arr[0] - arr[1]));
-    
+
     float xmax = fmax(x1, x2);
-    
+
     return fmax(-FLT_MAX, xmax + flog2(
                                        fpow2(x1 - xmax) +
                                        fpow2(x2 - xmax)));
     //      return fmax(-FLT_MAX, xmax + log2f(
     //                                              powf(2, x1 - xmax) +
     //                                              powf(2, x2 - xmax)));
-    
+
 }
 
 

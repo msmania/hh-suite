@@ -50,8 +50,7 @@
 #endif
 
 #ifdef AVX512
-#include <simde/x86/avx512f.h>
-#include <simde/x86/avx512bw.h>
+#include <simde/x86/avx512.h>
 
 // double support
 #ifndef SIMD_DOUBLE
@@ -102,7 +101,7 @@ typedef __m512  simd_float;
 #define simdf32_f2i(x) 	    _mm512_cvtps_epi32(x)  // convert s.p. float to integer
 #define simdf_f2icast(x)    _mm512_castps_si512(x)
 #endif //SIMD_FLOAT
-// integer support 
+// integer support
 #ifndef SIMD_INT
 #define SIMD_INT
 #define ALIGN_INT           AVX512_ALIGN_INT
@@ -115,7 +114,7 @@ typedef __m512i simd_int;
 #define simdi32_sub(x,y)    _mm512_sub_epi32(x,y)
 #define simdui8_subs(x,y)   _mm512_subs_epu8()
 #define simdi32_mul(x,y)    _mm512_mullo_epi32(x,y)
-#define simdui8_max(x,y)    _mm512_max_epu8()
+#define simdui8_max(x,y)    _mm512_max_epu8(x,y)
 #define simdi16_max(x,y)    _mm512_max_epi16(x,y)
 #define simdi32_max(x,y)    _mm512_max_epi32(x,y)
 #define simdi_load(x)       _mm512_load_si512(x)

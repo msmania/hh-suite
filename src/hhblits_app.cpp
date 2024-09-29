@@ -12,6 +12,10 @@ void checkOutput(Parameters& par) {
 int main(int argc, const char **argv) {
   Parameters par(argc, argv);
 
+#ifdef AVX512
+  printf("Hello!\n");
+#endif
+
 #ifdef HHSEARCH
   HHsearch::ProcessAllArguments(par);
 #elif HHALIGN
